@@ -27,7 +27,19 @@
   </div>
 </div>
 
-<%= form_for(Message.new, :html => {:class => 'form-horizontal'}) do |f| %>
+<%= form_for(@message, :html => {:class => 'form-horizontal'}) do |f| %>
+  <% if @message.errors.present? %>
+    <div class="alert alert-danger">
+      <%= alert %>
+      <ul>
+        <% @message.errors.full_messages.each do |full_message| %>
+          <li>
+            <%= full_message %>
+          </li>
+        <% end %> 
+      </ul>
+    </div>
+  <% end %>
   <div class="form-group">
     <label for="inputName" class="col-sm-2 control-label">名前：</label>
     <div class="col-sm-4" id="inputName">

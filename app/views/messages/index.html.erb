@@ -20,6 +20,19 @@
           </div>
         <% end %>
       </div>
+      <div class="row">
+        <!--編集と削除機能追加-->
+        <div class="col-sm-1 col-sm-offset-1">
+          <span class="label label-success edit-model">
+            <%= link_to "edit" , edit_message_path(message) %>
+          </span>
+        </div>
+        <div class="col-sm-2">
+          <span class="label label-danger edit-model">
+            <%= link_to "destroy" , message , method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
+          </span>
+        </div>
+      </div>
       <div class="row" style="margin-left: 5px; margin-right: 5px;">
         <hr>
       </div>

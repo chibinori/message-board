@@ -7,3 +7,12 @@
   display: inline-block;
   border: 1px solid #f00;
 }
+
+.label {
+  a {
+    &:link { color: #ffffff; } /*未訪問のリンク*/
+    &:visited { color: #ffffff; } /*訪問済みのリンク*/
+    &:hover { color: #ffff00; } /*ポイント時のリンク*/s
+    &:active { color: #ffffff; } /*選択中のリンク*/
+  }
+}

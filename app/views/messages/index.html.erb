@@ -4,18 +4,48 @@
   </div>
     
   <div class="panel-body">
+    <!-- 内容の入力フォームを input から textarea に変えたので、改行に対応 -->
     <% @messages.each do |message| %>
-      <span class="label label-info"><%= message.name %></span>
-      <%= message.body %>
-      <br>
+      <div class="row">
+        <% tmp_name = message.name %>
+        
+        <% message.body.each_line do |line| %>
+          <div class="col-sm-1">
+            <span class="label label-info"><%= tmp_name %></span>
+          </div>
+          <!--2行目以降はユーザ名を表示しない-->
+          <% tmp_name = "" %>
+          <div class="col-sm-11">
+            <%= line %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row" style="margin-left: 5px; margin-right: 5px;">
+        <hr>
+      </div>
     <% end %>
   </div>
 </div>
 
-<%= form_for(Message.new) do |f| %>
-  名前：
-  <%= f.text_field :name %>
-  内容：
-  <%= f.text_field :body %>
-  <%= f.submit class: "btn btn-sm btn-primary" %>
+<%= form_for(Message.new, :html => {:class => 'form-horizontal'}) do |f| %>
+  <div class="form-group">
+    <label for="inputName" class="col-sm-2 control-label">名前：</label>
+    <div class="col-sm-4" id="inputName">
+      <%= f.text_field :name, class: "form-control"  %>
+    </div>
+  </div>
+  <p></p>
+  <div class="form-group">
+    <label for="textBody" class="col-sm-2 control-label">内容：</label>
+    <div class="col-sm-10" id="textBody">
+      <%= f.text_area :body, class: "form-control"  %>
+    </div>
+  </div>
+  <p></p>
+  <div class="form-group">
+    <div class="col-sm-2 col-sm-offset-2">
+      <%= f.submit class: "btn btn-sm btn-primary" %>
+    </div>
+  </div>
+  <p></p>
 <% end%>

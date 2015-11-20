@@ -8,6 +8,8 @@ class MessagesController < ApplicationController
   end
   
   def create 
+    #binding.pry
+
     @message = Message.new(message_params)
     
     if @message.save
@@ -41,7 +43,7 @@ class MessagesController < ApplicationController
   private
   
   def message_params
-    params.require(:message).permit(:name, :body)
+    params.require(:message).permit(:name, :body, :age)
   end
   
   def set_message
